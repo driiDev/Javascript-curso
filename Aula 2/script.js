@@ -33,8 +33,43 @@ function adicionarTarefa() {
       let novaTarefa = document.createElement("li");
       // adiciona o valor do input na tela
       novaTarefa.textContent = tarefas[i];
+
+      let botaoRemover = document.createElement("button");
+      botaoRemover.className = "remover";
+      botaoRemover.textContent = "Remover";
+      botaoRemover.onclick = () => {
+        removerTarefa(i);
+      }
+
+      let botaoEditar = document.createElement("button");
+      botaoEditar.className = "editar";
+      botaoEditar.textContent = "Editar";
+      botaoEditar.onclick = () => {
+        editarTarefa(i);
+      }
+
+      novaTarefa.appendChild(botaoRemover);
+      novaTarefa.appendChild(botaoEditar);
       listaTarefas.appendChild(novaTarefa);
-      
     }
-    
+  }
+
+  function removerTarefa(i){
+    tarefas.splice(i, 1)
+    rendezirarTarefas();
+  }
+
+  function editarTarefa(i){
+    let tarefaEditada = prompt("Edite a tarefa: ");
+    if (tarefaEditada.trim != "") {
+      tarefas[i] = tarefaEditada
+      rendezirarTarefas();
+    }
+  }
+
+  function limparLista() {
+    tarefas.length = 0;
+    rendezirarTarefas();
+    let mensagem = document.getElementById("mensagem");
+    mensagem.textContent = "Lista de tarefas limpa com sucesso!";
   }
