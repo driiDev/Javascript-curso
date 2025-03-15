@@ -1,3 +1,5 @@
+let tarefas = [];
+
 function adicionarTarefa() {
     
     // pega o input do html e faz a ligação com js
@@ -12,20 +14,27 @@ function adicionarTarefa() {
     } else {
         let mensagemSucesso = "Tarefa adicionada com sucesso!";
         mensagem.textContent = mensagemSucesso;
+
+        tarefas.push(tarefa);
+        rendezirarTarefas();
       
-        // VERDE #28A745
-        // VERMELHO #A34743
-
-      // cria novo item (li) e insere na lista (ul)
-        const listaTarefas = document.getElementById("listaTarefas");
-        let novaTarefa = document.createElement("li");
-
-        // adiciona o valor do input na tela
-        novaTarefa.textContent = tarefa;
-        listaTarefas.appendChild(novaTarefa);
     }
 
     inputTarefa.value = ""; // limpar input
 
+  }
 
+  function rendezirarTarefas() {
+    // cria novo item (li) e insere na lista (ul)
+    const listaTarefas = document.getElementById("listaTarefas");
+    listaTarefas.innerHTML = "";
+
+    for (let i = 0; i < tarefas.length; i++) {
+      let novaTarefa = document.createElement("li");
+      // adiciona o valor do input na tela
+      novaTarefa.textContent = tarefas[i];
+      listaTarefas.appendChild(novaTarefa);
+      
+    }
+    
   }
